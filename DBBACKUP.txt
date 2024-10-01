@@ -1,0 +1,519 @@
+USE [QRSCANNER]
+GO
+/****** Object:  Table [dbo].[MenuHierarchy]    Script Date: 01-10-2024 15:55:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MenuHierarchy](
+	[MenuHierachy] [int] IDENTITY(1,1) NOT NULL,
+	[RoleID] [int] NOT NULL,
+	[ParentID] [int] NULL,
+	[MenuName] [varchar](255) NOT NULL,
+	[IsAccessible] [int] NOT NULL,
+	[ControllerName] [varchar](255) NOT NULL,
+	[ActionName] [varchar](255) NOT NULL,
+	[IsActive] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[MenuHierachy] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MENUTABLE]    Script Date: 01-10-2024 15:55:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MENUTABLE](
+	[MENUID] [int] IDENTITY(1,1) NOT NULL,
+	[PARENTID] [int] NULL,
+	[MENUNAME] [varchar](255) NULL,
+	[ACCESSIBLE] [int] NULL,
+	[CONTROLLERNAME] [varchar](255) NULL,
+	[ACTIONNAME] [varchar](255) NULL,
+	[ACTIVE] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[MENUID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[REGISTER]    Script Date: 01-10-2024 15:55:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[REGISTER](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[USERNAME] [varchar](255) NULL,
+	[PASSWORD] [varchar](255) NULL,
+	[EMAILID] [varchar](255) NULL,
+	[MOBILENO] [varchar](255) NULL,
+	[ADDRESS] [varchar](255) NULL,
+	[ROLENAME] [varchar](255) NULL,
+	[ROLEID] [int] NULL,
+	[ACTIVE] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RoleMenu]    Script Date: 01-10-2024 15:55:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RoleMenu](
+	[RoleMenuId] [int] IDENTITY(1,1) NOT NULL,
+	[RoleID] [int] NOT NULL,
+	[MenuID] [int] NOT NULL,
+	[IsActive] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[RoleMenuId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RoleTable]    Script Date: 01-10-2024 15:55:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RoleTable](
+	[RoleId] [int] IDENTITY(1,1) NOT NULL,
+	[RoleName] [varchar](255) NULL,
+	[Active] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[RoleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[MENUTABLE] ON 
+GO
+INSERT [dbo].[MENUTABLE] ([MENUID], [PARENTID], [MENUNAME], [ACCESSIBLE], [CONTROLLERNAME], [ACTIONNAME], [ACTIVE]) VALUES (1, 2, N'Rahul', 1, N'Rahul', N'Rahul', 0)
+GO
+SET IDENTITY_INSERT [dbo].[MENUTABLE] OFF
+GO
+SET IDENTITY_INSERT [dbo].[REGISTER] ON 
+GO
+INSERT [dbo].[REGISTER] ([ID], [USERNAME], [PASSWORD], [EMAILID], [MOBILENO], [ADDRESS], [ROLENAME], [ROLEID], [ACTIVE]) VALUES (1, N'RAHUL', N'RAHUL1999', N'RY8433642@gmail.com', N'8928130191', N'MULUND', N'EMPLOYEE', NULL, NULL)
+GO
+INSERT [dbo].[REGISTER] ([ID], [USERNAME], [PASSWORD], [EMAILID], [MOBILENO], [ADDRESS], [ROLENAME], [ROLEID], [ACTIVE]) VALUES (2, N'RAHUL', N'RAHUL199', N'RY8433642@gmail.com', N'8928130191', N'MULUND', N'EMPLOYEE', NULL, 1)
+GO
+INSERT [dbo].[REGISTER] ([ID], [USERNAME], [PASSWORD], [EMAILID], [MOBILENO], [ADDRESS], [ROLENAME], [ROLEID], [ACTIVE]) VALUES (3, N'RAHUL', N'RAHUL19er9', N'RY8433642@gmail.com', N'8928130191', N'MULUND', N'EMPLOYEE', NULL, 1)
+GO
+INSERT [dbo].[REGISTER] ([ID], [USERNAME], [PASSWORD], [EMAILID], [MOBILENO], [ADDRESS], [ROLENAME], [ROLEID], [ACTIVE]) VALUES (4, N'RAHUL', N'RAHUL19efghr9', N'RY8433642@gmail.com', N'8928130191', N'MULUND', N'EMPLOYEE', 2, 1)
+GO
+SET IDENTITY_INSERT [dbo].[REGISTER] OFF
+GO
+SET IDENTITY_INSERT [dbo].[RoleTable] ON 
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (1, N'Manager', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (2, N'Manager', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (3, N'Manager', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (4, N'Manager', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (5, N'Manager', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (6, N'Manager', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (7, N'Manager', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (8, N'Rahul', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (9, N'Rahul', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (10, N'Shubhankar', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (11, N'USER', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (12, N'Rahul', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (13, N'ADMIN', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (14, N'Rahul', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (15, N'ADMIN', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (16, N'', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (17, N'Rahul', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (18, N'', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (19, N'ADMIN', 1)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (20, N'Admin', 1)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (21, N'Shubhankar', 1)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (22, N'ADMIN', 1)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (23, N'USERS', 1)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (24, N'Rahul', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (25, N'ADMIN', 0)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (26, N'ADMIN', 1)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (27, N'Shubhankar', 1)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (28, N'ADMINfghfgh', 1)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (29, N'Shubhankar', 1)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (30, N'ADMINfghfgh', 1)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (31, N'Adminsss', 1)
+GO
+INSERT [dbo].[RoleTable] ([RoleId], [RoleName], [Active]) VALUES (32, N'c', 1)
+GO
+SET IDENTITY_INSERT [dbo].[RoleTable] OFF
+GO
+/****** Object:  StoredProcedure [dbo].[ADDMENU]    Script Date: 01-10-2024 15:55:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+  CREATE PROCEDURE [dbo].[ADDMENU](
+  @PARENTID INT,
+  @MENUNAME VARCHAR(255) =  NULL,
+  @ACCESSIBLE INT,
+  @CONTROLLERNAME VARCHAR(255) NULL,
+  @ACTIONNAME VARCHAR(255) NULL
+  )
+  AS
+  BEGIN
+
+  DECLARE @COUNT INT;
+
+  SELECT @COUNT = COUNT(*) FROM
+  MENUTABLE WHERE MENUNAME = @MENUNAME;
+
+  IF(@COUNT = 0)
+  BEGIN
+  INSERT INTO MENUTABLE(PARENTID,MENUNAME,ACCESSIBLE,CONTROLLERNAME,ACTIONNAME,ACTIVE)
+  VALUES(@PARENTID, @MENUNAME, @ACCESSIBLE, @CONTROLLERNAME, @ACTIONNAME,1);
+
+        SELECT 'SUCCESSFULLY' AS MSG, 'SUCCESS' AS STATUS, 1 AS N;
+    END
+    ELSE
+    BEGIN
+        SELECT 'FAILURE' AS MSG, 'FAILED' AS STATUS, 0 AS N;
+    END;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[ADDREGISTER]    Script Date: 01-10-2024 15:55:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[ADDREGISTER](
+    @USERNAME VARCHAR(255) = NULL,
+    @PASSWORD VARCHAR(255) = NULL,
+    @EMAILID VARCHAR(255) = NULL,
+    @MOBILENO VARCHAR(255) = NULL,
+    @ADDRESS VARCHAR(255) = NULL,
+    @ROLENAME VARCHAR(255) = NULL,
+    @ROLEID INT 
+)
+AS
+BEGIN
+    DECLARE @Count INT;
+
+    SELECT @Count = COUNT(*) 
+    FROM Register 
+    WHERE USERNAME = @USERNAME AND PASSWORD = @PASSWORD;
+
+
+    IF (@Count = 0)
+    BEGIN
+        INSERT INTO Register (USERNAME, PASSWORD, EMAILID, MOBILENO, ADDRESS, ROLENAME, ROLEID,ACTIVE)
+        VALUES (@USERNAME, @PASSWORD, @EMAILID, @MOBILENO, @ADDRESS, @ROLENAME, @ROLEID,1);
+
+        SELECT 'SUCCESSFULLY' AS MSG, 'SUCCESS' AS STATUS, 1 AS N;
+    END
+    ELSE
+    BEGIN
+        SELECT 'FAILURE' AS MSG, 'FAILED' AS STATUS, 0 AS N;
+    END
+END;
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[AddRole]    Script Date: 01-10-2024 15:55:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+  create procedure [dbo].[AddRole](
+  @RoleName varchar(255)
+  ) 
+  as
+  begin
+  if(@RoleName is not null)
+  begin
+  insert into RoleTable(RoleName,Active) values(@RoleName,1);
+  select 'Successfully' as MSG, 'Success' as STATUS, 1 as N; 
+  end
+  else
+  begin
+    select 'Failure' as MSG, 'Failed' as STATUS, 0 as N; 
+  end
+  end;
+GO
+/****** Object:  StoredProcedure [dbo].[ALLMENU]    Script Date: 01-10-2024 15:55:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+  CREATE PROCEDURE [dbo].[ALLMENU]
+  AS
+  BEGIN
+  SELECT ROW_NUMBER() OVER(ORDER BY MENUID DESC) AS RowNum, * FROM MENUTABLE WHERE ACTIVE = 1;
+  END;
+GO
+/****** Object:  StoredProcedure [dbo].[ALLREGISTER]    Script Date: 01-10-2024 15:55:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+  CREATE PROCEDURE [dbo].[ALLREGISTER]
+  AS
+  BEGIN
+  SELECT ROW_NUMBER() OVER(ORDER BY ID desc) as RowNum, * from REGISTER   where Active = 1;
+  END;
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[AllROLES]    Script Date: 01-10-2024 15:55:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+  CREATE procedure [dbo].[AllROLES]
+  as
+  begin
+  select ROW_NUMBER() over(order by RoleId desc) as RowNum, * from RoleTable where Active = 1;
+  end;
+GO
+/****** Object:  StoredProcedure [dbo].[GETBYMENUBYID]    Script Date: 01-10-2024 15:55:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[GETBYMENUBYID](
+@MENUID INT
+)
+AS
+BEGIN
+SELECT * FROM MENUTABLE WHERE ACTIVE = 1 AND MENUID = @MENUID;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[GETBYREGISTERBYID]    Script Date: 01-10-2024 15:55:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[GETBYREGISTERBYID](
+@ID INT
+)
+AS
+BEGIN
+SELECT * FROM REGISTER WHERE ACTIVE = 1 AND ID = @ID;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[GetByRoleId]    Script Date: 01-10-2024 15:55:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+  CREATE procedure [dbo].[GetByRoleId](
+  @RoleId int
+  )
+  as
+  begin
+  Select * from RoleTable where Active = 1 and RoleId = @RoleId;
+  end;
+GO
+/****** Object:  StoredProcedure [dbo].[LOGINSP]    Script Date: 01-10-2024 15:55:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[LOGINSP](
+@USERNAME VARCHAR(255)  = NULL,
+@PASSWORD VARCHAR(255)  = NULL
+)
+AS
+BEGIN
+
+DECLARE @COUNT INT;
+
+SELECT @COUNT = COUNT(*) FROM REGISTER WHERE USERNAME = @USERNAME AND PASSWORD=  @PASSWORD;
+
+IF(@COUNT = 1)
+BEGIN
+        SELECT  'SUCCESSFULLY LOGIN' AS MSG, 'SUCCESS' AS STATUS, 1 AS N, * from REGISTER  WHERE USERNAME = @USERNAME AND PASSWORD = @PASSWORD;
+END
+ELSE IF(@COUNT = 0)
+BEGIN
+        SELECT 'LOGIN FAILED' AS MSG, 'FAIL' AS STATUS, 0 AS N;
+END
+ELSE
+BEGIN
+        SELECT 'SOMETHING WENT WRONG' AS MSG, 'FAIL' AS STATUS, 404 AS N;
+END;
+END;
+
+GO
+/****** Object:  StoredProcedure [dbo].[REMOVEMENU]    Script Date: 01-10-2024 15:55:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[REMOVEMENU](
+@MENUID INT
+)
+AS
+BEGIN
+IF(@MENUID IS NOT NULL)
+BEGIN
+UPDATE MENUTABLE SET ACTIVE = 0 WHERE MENUID = @MENUID;
+    select 'Successfully' as MSG, 'Success' as STATUS , 1 as N;
+  end;
+  else
+  begin
+  select 'Failure' as MSG, 'Failed' as STATUS, 0 as N;
+  end;
+  end;
+GO
+/****** Object:  StoredProcedure [dbo].[REMOVEREGISTER]    Script Date: 01-10-2024 15:55:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[REMOVEREGISTER](
+@ID INT 
+)
+AS
+BEGIN
+IF(@ID IS NOT NULL)
+BEGIN
+UPDATE REGISTER SET ACTIVE  = 0 WHERE ID = @ID;
+    select 'Successfully' as MSG, 'Success' as STATUS , 1 as N;
+  end;
+  else
+  begin
+  select 'Failure' as MSG, 'Failed' as STATUS, 0 as N;
+  end;
+  end;
+GO
+/****** Object:  StoredProcedure [dbo].[RemoveRole]    Script Date: 01-10-2024 15:55:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+  create procedure [dbo].[RemoveRole](
+  @RoleId int
+  )
+  as
+  begin
+  if(@RoleId is not null)
+  begin
+  update RoleTable set Active = 0 where RoleId = @RoleId;
+    select 'Successfully' as MSG, 'Success' as STATUS , 1 as N;
+  end;
+  else
+  begin
+  select 'Failure' as MSG, 'Failed' as STATUS, 0 as N;
+  end;
+  end;
+GO
+/****** Object:  StoredProcedure [dbo].[UPDATEMENU]    Script Date: 01-10-2024 15:55:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[UPDATEMENU](
+@PARENTID INT = NULL,
+@MENUNAME VARCHAR(255) = NULL,
+@ACCESSIBLE INT =NULL,
+@CONTROLLERNAME VARCHAR(255) =  NULL,
+@ACTIONNAME VARCHAR(255) = NULL,
+@MENUID INT = NULL
+)
+AS
+BEGIN
+IF(@MENUID IS NOT NULL)
+BEGIN
+UPDATE MENUTABLE SET PARENTID = @PARENTID, MENUNAME = @MENUNAME,
+ACCESSIBLE = @ACCESSIBLE, CONTROLLERNAME = @CONTROLLERNAME, 
+ACTIONNAME = @ACTIONNAME WHERE MENUID = @MENUID;
+  select 'Successfully' as MSG, 'Success' as STATUS , 1 as N;
+  end;
+  else
+  begin
+  select 'Failure' as MSG, 'Failed' as STATUS, 0 as N;
+  end;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[UPDATEREGISTER]    Script Date: 01-10-2024 15:55:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+  CREATE PROCEDURE [dbo].[UPDATEREGISTER](
+    @USERNAME VARCHAR(255) = NULL,
+    @PASSWORD VARCHAR(255) = NULL,
+    @EMAILID VARCHAR(255) = NULL,
+    @MOBILENO VARCHAR(255) = NULL,
+    @ADDRESS VARCHAR(255) = NULL,
+    @ROLENAME VARCHAR(255) = NULL,
+    @ROLEID INT = NULL,
+	@ID INT
+  )
+  AS
+  BEGIN
+  IF(@ROLEID IS NOT NULL)
+  BEGIN
+  UPDATE REGISTER SET USERNAME = @USERNAME, PASSWORD = @PASSWORD,
+  EMAILID = @EMAILID, MOBILENO = @MOBILENO, ADDRESS = @ADDRESS,
+  ROLENAME = @ROLENAME, ROLEID = @ROLEID WHERE ID = @ID;
+  select 'Successfully' as MSG, 'Success' as STATUS , 1 as N;
+  end;
+  else
+  begin
+  select 'Failure' as MSG, 'Failed' as STATUS, 0 as N;
+  end;
+  end;
+GO
+/****** Object:  StoredProcedure [dbo].[UpdateRole]    Script Date: 01-10-2024 15:55:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+  create procedure [dbo].[UpdateRole](
+  @RoleId int,
+  @RoleName varchar(255)
+  )
+  as
+  begin
+  if(@RoleId  is not null and @RoleName is not null)
+  begin
+  update RoleTable set RoleName = @RoleName where RoleId = @RoleId;
+  select 'Successfully' as MSG, 'Success' as STATUS , 1 as N;
+  end;
+  else
+  begin
+  select 'Failure' as MSG, 'Failed' as STATUS, 0 as N;
+  end;
+  end;
+GO
